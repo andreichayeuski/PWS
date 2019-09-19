@@ -36,15 +36,19 @@ namespace PWS_4_Proxy
 
         private void Cav_Click(object sender, EventArgs e)
         {
-            var msu1 = new PWS_4_Proxy.Proxy.A();
-            msu1.s = s1.Text;
-            msu1.k = int.Parse(i1.Text);
-            msu1.f = float.Parse(d1.Text);
+            var msu1 = new Proxy.A
+            {
+                s = s1.Text,
+                k = int.Parse(i1.Text),
+                f = float.Parse(d1.Text)
+            };
 
-            var msu2 = new PWS_4_Proxy.Proxy.A();
-            msu2.s = s2.Text;
-            msu2.k = int.Parse(i2.Text);
-            msu2.f = float.Parse(d2.Text);
+            var msu2 = new Proxy.A
+            {
+                s = s2.Text,
+                k = int.Parse(i2.Text),
+                f = float.Parse(d2.Text)
+            };
 
             var result = proxyClient.Sum(msu1, msu2);
 
