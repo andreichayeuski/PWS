@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 
 namespace PWS_8.Models {
-    public class ISM {
-        public string key { get; set; }
-        public string value { get; set; }
+    public class DataModel {
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 }

@@ -5,6 +5,6 @@ using System.Web;
 
 namespace PWS_8.Models {
     public class SessionList {
-        public List<ISM> sessions;
+        public List<DataModel> sessions;
     }
 }

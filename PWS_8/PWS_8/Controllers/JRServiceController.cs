@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using PWS_8.Models;
+using Newtonsoft.Json;
 
 namespace PWS_8.Controllers
 {
@@ -13,26 +14,27 @@ namespace PWS_8.Controllers
         private static bool ignoreMethods = false;
 
         [System.Web.Http.HttpPost]
-        public object[] Multi([FromBody] ReqJsonRPC[] body)
+        public JsonResult Multi([FromBody] ReqJsonRPC[] body)
         {
             int length = body.Length;
-            object[] result = new object[length];
+            JsonResult[] result = new JsonResult[length];
 
             for (int i = 0; i < length; i++)
                 result[i] = Single(body[i]);
 
-            return result;
+            return Json(result);
         }
 
-        private object Single(ReqJsonRPC body)
+        [System.Web.Http.HttpPost]
+        public JsonResult Single(ReqJsonRPC body)
         {
             if (ignoreMethods)
-                return getError(body.Id, body.Jsonrpc, "Methods are don't available");
+                return Json(GetError(body.Id, body.JsonRPC, new ErrorJsonRPC { Message = "Methods are don't available", Code = -32601 }));
 
             string method = body.Method;
-            ISM param = body.Params;
-            string key = param.key;
-            int value = int.Parse(param.value == null || param.value == "" ? "0" : param.value); // default value = 0
+            DataModel param = body.Params;
+            string key = param.Key;
+            int value = int.Parse(param.Value == null || param.Value == "" ? "0" : param.Value); // default value = 0
             int? result = null;
 
             switch (method)
@@ -74,25 +76,26 @@ namespace PWS_8.Controllers
                     }
                 default:
                     {
-                        return getError(body.Id, body.Jsonrpc, string.Format("Function {0} is not found", body.Method));
+                        return Json(GetError(body.Id, body.JsonRPC, new ErrorJsonRPC { Message = string.Format("Function {0} is not found", body.Method), Code = -32601 }));
                     }
             }
-            return new ResJsonRPC()
-            {
-                Id = body.Id,
-                Jsonrpc = body.Jsonrpc,
-                Method = body.Method,
-                Result = result
-            };
+            return Json(new ResJsonRPC()
+                {
+                    Id = body.Id,
+                    JsonRPC = body.JsonRPC,
+                    Method = body.Method,
+                    Result = result
+                }
+            );
         }
 
-        private ResJsonRPCError getError(string id, string jsonrpc, string message)
+        private ResJsonRPCError GetError(string id, string jsonRPC, ErrorJsonRPC error)
         {
             return new ResJsonRPCError()
             {
                 Id = id,
-                Jsonrpc = jsonrpc,
-                Error = message
+                JsonRPC = jsonRPC,
+                Error = error
             };
         }
 
