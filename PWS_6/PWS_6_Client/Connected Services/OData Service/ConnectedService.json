@@ -1,0 +1,42 @@
+﻿{
+  "ProviderId": "Unchase.OData.ConnectedService",
+  "Version": "1.3.2.0",
+  "GettingStartedDocument": {
+    "Uri": "https://msdn.microsoft.com/en-us/library/cc668772(v=vs.110).aspx"
+  },
+  "ExtendedData": {
+    "OperationImportsGenerator": 0,
+    "IncludeExtensionsT4File": true,
+    "GenerateOperationImports": false,
+    "ServiceName": "OData Service",
+    "AcceptAllUntrustedCertificates": false,
+    "Endpoint": "https://localhost:44357/WcfDataService1.svc/$metadata",
+    "EdmxVersion": {
+      "Major": 1,
+      "Minor": 0,
+      "Build": 0,
+      "Revision": 0,
+      "MajorRevision": 0,
+      "MinorRevision": 0
+    },
+    "GeneratedFileNamePrefix": "WcfDataServiceClient",
+    "UseNameSpacePrefix": false,
+    "NamespacePrefix": null,
+    "UseDataServiceCollection": false,
+    "OpenGeneratedFilesOnComplete": false,
+    "LanguageOption": 0,
+    "FunctionImports": null,
+    "OperationImports": null,
+    "ExcludedOperationImportsNames": "",
+    "UseNetworkCredentials": false,
+    "NetworkCredentialsUserName": null,
+    "NetworkCredentialsPassword": null,
+    "NetworkCredentialsDomain": null,
+    "WebProxyUri": null,
+    "UseWebProxy": false,
+    "UseWebProxyCredentials": false,
+    "WebProxyNetworkCredentialsUserName": null,
+    "WebProxyNetworkCredentialsPassword": null,
+    "WebProxyNetworkCredentialsDomain": null
+  }
+}
